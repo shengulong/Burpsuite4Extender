@@ -22,8 +22,8 @@ import re
 
 #全局定义变量
 #pythonPath = "/usr/local/bin/python"
-#sqlmapPath = "/usr/local/share/sqlmap/sqlmap.py"
-httpPath = "/Users/zhangjianxiang/Documents/sqlmap/"
+sqlmapPath = "/Users/shendepu/install/sqlmap-dev/sqlmap.py"
+httpPath = "/Users/shendepu/install/sqlmap-dev/"
 
 #切换路径
 os.chdir(httpPath)
@@ -84,7 +84,7 @@ class BurpExtender(IBurpExtender, IHttpListener, IContextMenuFactory, IProxyList
         fullPathName = httpPath + hostDomain + "/" + fullName
 
         #cmdBase="tell application \"Terminal\" \n\tactivate\n\tdo script \" " + pythonPath + " " + sqlmapPath + "  " + "-r " + fullPathName + " --threads 3 --tamper randomcase.py" + "\"\nend tell"
-        cmdBase="tell application \"Terminal\" \n\tactivate\n\tdo script \" sqlmap -r " + fullPathName + " --batch --threads 3 --tamper randomcase.py" + "\"\nend tell"
+        cmdBase="tell application \"Terminal\" \n\tactivate\n\tdo script \" python " +sqlmapPath + " -r " + fullPathName + " --batch --threads 3 --tamper randomcase.py" + "\"\nend tell"
 
         proc = subprocess.Popen(['osascript', '-'], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
         stdout_output = proc.communicate(cmdBase)
